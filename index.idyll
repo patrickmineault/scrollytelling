@@ -33,10 +33,7 @@ Sensory neurons in the brain are noisy. If we present the same stimulus many tim
 
   [Step]
     If you're familiar with electronics, you'll recognize this as an RC circuit. The equation for the voltage is:
-    
-    [div style:`{width:"100%"; textAlign:"center"}`]
     [Equation display:true]\tau \frac{dV}{dt} = V(t) + RI(t)[/Equation]
-    [/div]
   [/Step]
 
   [Step]
