@@ -1,0 +1,78 @@
+.d3-component svg {
+  background: #ddd;
+  max-height: 300px;
+}
+@media all and (max-width: 1000px) {
+  .d3-component svg {
+    max-height: 200px;
+  }
+}
+
+.idyll-scroll .idyll-text-container {
+  max-width: 50vw;
+}
+.idyll-scroll-text .idyll-step {
+  max-width: 45vw;
+}
+.d3-component-container {
+  height: 20vw;
+  width: 20vw;
+  margin-left: 72vw;
+}
+
+@media only screen and (max-width: 600px) {
+  .idyll-scroll .idyll-text-container {
+    max-width: 57vw;
+  }
+  .idyll-scroll-text .idyll-step {
+    max-width: 57vw;
+  }
+  .d3-component-container {
+    height: 31vw;
+    width: 31vw;
+    margin-left: 65vw;
+  }
+}
+
+.circuit-svg {
+  margin-left: 60vw;
+  transition: opacity 500ms;
+}
+
+.circuit-svg .circuit {
+  opacity: 0;
+  transition: opacity 500ms;
+}
+
+.eiChart {
+  max-width: 850px;
+  width: 850px;
+}
+
+.circuit-1 .rcdiagram tspan {
+  font-weight: bold !important;
+}
+
+.circuit-2 .vtdiagram tspan {
+  font-weight: bold !important;
+}
+
+.circuit-2 .negion circle {
+  stroke: #00f !important;
+}
+
+.circuit-2 .posion circle {
+  stroke: #f00 !important;
+}
+
+.circuit-3 .itdiagram tspan {
+  font-weight: bold !important;
+}
+
+.circuit-4 .circuit {
+  opacity: 1;
+}
+
+.circuit-5 .circuit {
+  opacity: 1;
+}

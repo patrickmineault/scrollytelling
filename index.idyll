@@ -1,0 +1,102 @@
+[meta title:"Balanced excitation and inhibition" description:"Emergent chaos in spiking neural networks" /]
+
+[Header
+  fullWidth:true
+  title:"Balanced excitation and inhibition"
+  subtitle:"Emergent chaos in spiking neural networks"
+  author:"Patrick Mineault"
+  authorLink:"https://xcorr.net"
+  date:"Aug 12, 2021"
+   /]
+
+## Introduction
+
+Sensory neurons in the brain are noisy. If we present the same stimulus many times, their response patterns change from trial to trial. How can the brain have such different responses to the same stimuli? 
+
+[var name:"scrollStep" value:0 /]
+[Scroller fullWidth:false currentStep: scrollStep]
+  [Graphic fullWidth:false className:"circuit-svg" ]
+  [SVG src:"static/images/circuit.svg" className:`"circuit-" + scrollStep` /]
+  [/Graphic]
+
+  [Step]
+  We can model biological neurons using a highly abstracted model: the leaky integrate-and-fire (LIF) neuron. 
+  [/Step]
+
+  [Step]
+  Neurons are surrounded by a cell membrane. Since charge can accumulate on both sides of this membrane, it acts as a capacitator [Equation]C[/Equation]. The membrane is leaky, which is represented by leak resistance [Equation]R[/Equation]. 
+  [/Step] 
+  
+  [Step]The relative voltage inside the cell with respect to outside is [Equation]V(t)[/Equation]. [/Step]
+  
+  [Step]Finally, we assume one lump input to the cell, a current [Equation]I(t)[/Equation]. 
+  [/Step]
+
+  [Step]
+    If you're familiar with electronics, you'll recognize this as an RC circuit. The equation for the voltage is:
+    [Equation]
+    \tau \frac{dV}{dt} = V(t) + RI(t)
+    [/Equation]
+  [/Step]
+
+  [Step]
+    When the voltage goes above the threshold [Equation]V_{thr}[/Equation], the LIF model fires a single spike, and the voltage is reset to 0.
+  [/Step]
+  
+[/Scroller]
+
+What happens when this model neuron is driven by a constant stimulus [Equation]I(t)[/Equation]? **Not noise**!
+
+[Observable
+  className:"eiChart"
+  notebook:""
+  showCells:`['eiChart']`
+  variables:`{
+    height: 300,
+    constantDrive: .02,
+    alpha: 0.0,
+    beta: .01,
+    excRate: 1,
+    inhRate: 1,
+    width: 850
+  }` /]
+
+With a constant stimulus, the neuron charges up until threshold, and then fires a single spike. With a stronger stimulus, the neuron charges up faster, but still completely predictably.
+
+[Observable
+  className: "eiChart"
+  notebook:""
+  showCells:`['eiChart']`
+  variables:`{
+    height: 300,
+    constantDrive: .04,
+    alpha: 0.0,
+    beta: .01,
+    excRate: 1,
+    inhRate: 1,
+    width: 850
+  }` /]   
+
+We can recover the irregular behaviour we expect from neurons with stochastic synapses. Randomly activating excitatory and inhibitory synapses cause the neuron's underlying voltage to vary up and down. That makes the voltage cross the threshold at random intervals, even with a steady drive.
+
+[Observable
+  className: "eiChart"
+  notebook:""
+  showCells:`['eiChart']`
+  variables:`{
+    height: 300,
+    constantDrive: drive,
+    alpha: alpha,
+    beta: .01,
+    excRate: 1,
+    inhRate: 1,
+    width: 850
+  }` /]
+
+Try it yourself! Adjust the parameters of the simulation to see how they interact.
+
+[var name:"drive" value:0.03/] [var name:"alpha" value:0.07 /]
+[div] [span style:`{width: "170px", display: "inline-block"}`] Stochastic noise [/span] [Range value:alpha min:0 max:.1 step:.001/] [Display value:alpha /] [/div]
+[div] [span style:`{width: "170px", display: "inline-block"}`] Constant current [/span] [Range value:drive min:0 max:.1 step:.001 /] [Display value:drive /] [/div]
+
+
