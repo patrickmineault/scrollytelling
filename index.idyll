@@ -25,18 +25,18 @@ Sensory neurons in the brain are noisy. If we present the same stimulus many tim
 
   [Step]
   Neurons are surrounded by a cell membrane. Since charge can accumulate on both sides of this membrane, it acts as a capacitator [Equation]C[/Equation]. The membrane is leaky, which is represented by leak resistance [Equation]R[/Equation]. 
-  [/Step] 
+  [/Step]
   
   [Step]The relative voltage inside the cell with respect to outside is [Equation]V(t)[/Equation]. [/Step]
   
-  [Step]Finally, we assume one lump input to the cell, a current [Equation]I(t)[/Equation]. 
-  [/Step]
+  [Step]Finally, we assume one lump input to the cell, a current [Equation]I(t)[/Equation]. [/Step]
 
   [Step]
     If you're familiar with electronics, you'll recognize this as an RC circuit. The equation for the voltage is:
-    [Equation]
-    \tau \frac{dV}{dt} = V(t) + RI(t)
-    [/Equation]
+    
+    [div style:`{width:"100%"; textAlign:"center"}`]
+    [Equation display:true]\tau \frac{dV}{dt} = V(t) + RI(t)[/Equation]
+    [/div]
   [/Step]
 
   [Step]
