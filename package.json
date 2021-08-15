@@ -6,7 +6,10 @@
     "theme": "tufte",
     "layout": "blog",
     "css": "styles.css",
-    "authorView": false
+    "authorView": false,
+    "compiler": {
+      "postProcessors": ["idyll-plugin-observable"]
+    }
   },
   "dependencies": {
     "@observablehq/runtime": "4",
@@ -16,6 +19,7 @@
     "idyll-d3-component": "^2.0.0"
   },
   "devDependencies": {
-    "gh-pages": "^0.12.0"
+    "gh-pages": "^0.12.0",
+    "idyll-plugin-observable": "^1.0.20"
   }
 }
