@@ -44,9 +44,9 @@ Sensory neurons in the brain are noisy. If we present the same stimulus many tim
 
 What happens when this model neuron is driven by a constant stimulus [Equation]I(t)[/Equation]? **Not noise**!
 
-[Observable
+[EINeuron
+  notebook:"https://observablehq.com/@patrickmineault/balanced-e-i-networks"
   className:"eiChart"
-  notebook:""
   showCells:`['eiChart']`
   variables:`{
     height: 300,
@@ -60,9 +60,9 @@ What happens when this model neuron is driven by a constant stimulus [Equation]I
 
 With a constant stimulus, the neuron charges up until threshold, and then fires a single spike. With a stronger stimulus, the neuron charges up faster, but still completely predictably.
 
-[Observable
+[EINeuron
+  notebook:"https://observablehq.com/@patrickmineault/balanced-e-i-networks"
   className: "eiChart"
-  notebook:""
   showCells:`['eiChart']`
   variables:`{
     height: 300,
@@ -76,9 +76,9 @@ With a constant stimulus, the neuron charges up until threshold, and then fires 
 
 We can recover the irregular behaviour we expect from neurons with stochastic synapses. Randomly activating excitatory and inhibitory synapses cause the neuron's underlying voltage to vary up and down. That makes the voltage cross the threshold at random intervals, even with a steady drive.
 
-[Observable
+[EINeuron
+  notebook:"https://observablehq.com/@patrickmineault/balanced-e-i-networks"
   className: "eiChart"
-  notebook:""
   showCells:`['eiChart']`
   variables:`{
     height: 300,
@@ -93,7 +93,59 @@ We can recover the irregular behaviour we expect from neurons with stochastic sy
 Try it yourself! Adjust the parameters of the simulation to see how they interact.
 
 [var name:"drive" value:0.03/] [var name:"alpha" value:0.07 /]
-[div] [span style:`{width: "170px", display: "inline-block"}`] Stochastic noise [/span] [Range value:alpha min:0 max:.1 step:.001/] [Display value:alpha /] [/div]
+[div] [span style:`{width: "170px", display: "inline-block"}`] Synaptic noise [/span] [Range value:alpha min:0 max:.1 step:.001/] [Display value:alpha /] [/div]
 [div] [span style:`{width: "170px", display: "inline-block"}`] Constant current [/span] [Range value:drive min:0 max:.1 step:.001 /] [Display value:drive /] [/div]
 
+# From single neurons to neural networks
 
+We've seen how single neurons can have stochastic responses to constant stimuli - by integrating from balanced, noisy excitatory and inhibitory synapses. What about a network of neurons? Will a network of neurons, responding to a constant stimulus, be more regular or more stochastic than a single neuron?
+
+[Brunel (2000)](https://link.springer.com/article/10.1023/A:1008925309027) examines this question. Two subpopulations of neurons interact: [span style:`{color: "red"}`]excitatory neurons[/span] and [span style:`{color: "blue"}`]inhibitory neurons[/span]. Inhibitory neurons are fewer, but they have stronger synapses. Every neuron connects to small fraction of the population [Equation]\epsilon[/Equation].
+
+How does this population react to a constant stimulus? That depends on two core parameters:
+
+* [Equation]v_{ext}/v_{thr}[/Equation]: The ratio of the external drive to the threshold of neurons. How strong the external stimulus is.
+* [Equation]g[/Equation]: The ratio of inhibition to excitation.
+
+[var name:"scrollStep2" value:0 /]
+[var name:"v_ext_s" value:2 /]
+[var name:"g_val_s" value:6 /]
+[var name:"steps" value:`[{g_val: 4, v_ext: 3}, {g_val: 6, v_ext: 3}, {g_val: 8, v_ext: 5}]` /]
+[Scroller fullWidth:true currentStep:scrollStep2 offset:.8]
+  [Graphic fullWidth:false className:"canvas-wrapper" ]
+  [EINetwork
+  className: "canvas"
+  showCells:`['canvas']`
+  variables:`{
+    height: 300,
+    v_ext: scrollStep2 > 2 ? v_ext_s : steps[scrollStep2].v_ext,
+    g_val: scrollStep2 > 2 ? g_val_s : steps[scrollStep2].g_val,
+    width: 850
+  }` /]
+  [/Graphic]
+
+  [Step]With equal inhibition and excitation and a moderate drive, the population is synchronous[/Step]
+  [Step]Stronger inhibition desynchronizes the population[/Step]
+  [Step]A stronger drive recovers the synchronous behaviour[/Step]
+  [Step]Chaotic and regular patterns can emerge depending on parameters[/Step]
+[/Scroller]
+[div style:`{marginTop: "-100px"}`]
+Try it for yourself! Identify sets of parameters which lead to chaotic or regular behaviour.
+
+[div] [span style:`{width: "170px", display: "inline-block"}`] External drive [/span] [Range value:v_ext_s min:0 max:10 step:0.01 /] [Display value:v_ext_s onEnterView:`scrollStep2 = 3;` /] [/div]
+[div] [span style:`{width: "170px", display: "inline-block"}`] Ratio of inhibition to excitation [/span] [Range value:g_val_s min:0 max:8 step:0.01 /] [Display value:g_val_s /] [/div]
+[/div]
+
+# Inspiration and further reading
+
+* Grace Lindsay, [Models of the mind](https://gracewlindsay.com/2021/02/10/models-of-the-mind-how-physics-engineering-and-mathematics-have-shaped-our-understanding-of-the-brain/), Chapter 5
+* [Neuromatch academy](https://compneuro.neuromatch.io/tutorials/W1D1_ModelTypes/student/W1D1_Tutorial2.html)
+* [Neuronal Dynamics](https://neuronaldynamics.epfl.ch/online/Ch1.S3.html)
+
+## Source code
+
+* [Linear integrate-and-fire neuron](https://observablehq.com/@patrickmineault/balanced-e-i-networks)
+* [Populations of LIF neurons](https://observablehq.com/@patrickmineault/dynamics-of-sparsely-connected-networks-of-inhibitory-and)
+* [This page](https://github.com/patrickmineault/scrollytelling)
+
+Made with [Idyll](https://idyll-lang.org/).

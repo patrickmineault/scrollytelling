@@ -4,7 +4,7 @@ const { Runtime, Inspector, Library } = require("@observablehq/runtime");
 // https://observablehq.com/@patrickmineault/balanced-e-i-networks
 import notebook from "./notebooks/lif.js";
 
-class Observable extends React.Component {
+class EINeuron extends React.Component {
 
   componentDidMount() {
     
@@ -49,4 +49,4 @@ class Observable extends React.Component {
   }
 }
 
-module.exports = Observable;
+module.exports = EINeuron;

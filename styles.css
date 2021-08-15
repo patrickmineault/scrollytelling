@@ -49,6 +49,15 @@
   width: 850px;
 }
 
+.canvas-wrapper {
+  margin-left: 30vw;
+}
+
+.canvas {
+  max-width: 850px;
+  width: 850px;
+}
+
 .circuit-1 .rcdiagram tspan {
   font-weight: bold !important;
 }
