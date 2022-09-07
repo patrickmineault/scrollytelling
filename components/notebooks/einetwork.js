@@ -399,7 +399,7 @@ export default function define(runtime, observer) {
   100
   )});
     main.variable(observer("stdlib")).define("stdlib", ["require"], function(_require){return(
-  _require("https://unpkg.com/@stdlib/stdlib@0.0.32/dist/stdlib-flat.min.js")
+  _require("/static/js/stdlib-flat.min.js")
   )});
     main.variable(observer("set")).define("set", ["Event"], function(Event){return(
   function set(input, value) {

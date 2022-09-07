@@ -8,12 +8,13 @@
     "css": "styles.css",
     "authorView": false,
     "compiler": {
-      "postProcessors": ["idyll-plugin-observable"]
+      "postProcessors": [
+        "idyll-plugin-observable"
+      ]
     }
   },
   "dependencies": {
     "@observablehq/runtime": "4",
-    "@patrickmineault/leaky-integrate-and-fire-lif-neuron-with-balanced-excitati": "https://api.observablehq.com/@patrickmineault/leaky-integrate-and-fire-lif-neuron-with-balanced-excitati.tgz?v=3",
     "d3": "^4.0.0",
     "idyll": "^5.0.0",
     "idyll-d3-component": "^2.0.0"
